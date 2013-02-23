@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://futures.github.com/atom.xml" rel="self"/>
-  <link href="http://futures.github.com/"/>
-  <updated>2013-02-23T09:21:45+08:00</updated>
-  <id>http://futures.github.com/</id>
+  <title><![CDATA[Fedora Futures]]></title>
+  <link href="http://fcrepo.org/atom.xml" rel="self"/>
+  <link href="http://fcrepo.org/"/>
+  <updated>2013-02-23T15:41:49+08:00</updated>
+  <id>http://fcrepo.org/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Edwin Shin]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
