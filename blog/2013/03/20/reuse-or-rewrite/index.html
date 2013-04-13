@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Fedora Futures</title>
+  <title>Reuse or Rewrite? - Fedora Futures</title>
   <meta name="author" content="Edwin Shin">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://fcrepo.org">
+  <link rel="canonical" href="http://fcrepo.org/blog/2013/03/20/reuse-or-rewrite">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Fedora Futures" type="application/atom+xml">
@@ -79,15 +79,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/03/20/reuse-or-rewrite/">Reuse or Rewrite?</a></h1>
+      <h1 class="entry-title">Reuse or Rewrite?</h1>
     
     
       <p class="meta">
@@ -110,7 +107,7 @@
   </header>
 
 
-  <div class="entry-content"><p>One of the first technical decisions we faced was whether to reuse or rewrite. Fedora represents over twelve years of development effort and there are some fairly <a href="http://www.joelonsoftware.com/articles/fog0000000069.html">well-known arguments</a> against undertaking a complete rewrite.</p>
+<div class="entry-content"><p>One of the first technical decisions we faced was whether to reuse or rewrite. Fedora represents over twelve years of development effort and there are some fairly <a href="http://www.joelonsoftware.com/articles/fog0000000069.html">well-known arguments</a> against undertaking a complete rewrite.</p>
 
 <p>However, the challenge of reusing the existing codebase is daunting, and not only for technical reasons. Fedora is not just an open-source project, but it is a community-sourced project. That is, a significant part of Fedora&#8217;s value proposition is the strength and expertise of its community. That community has driven and sustained Fedora over the years, but the <a href="http://martinfowler.com/bliki/TechnicalDebt.html">technical debt</a> of Fedora&#8217;s codebase has become a liability for engaging and growing our community of developers. A strong and engaged developer community is an essential part of a preservation repository&#8217;s success and sustainability, so our answer to the question of reuse or rewrite must support this goal.</p>
 
@@ -120,76 +117,86 @@ At nine years, I am the longest-serving, active committer on the Fedora project 
 
 <p>Two particular problems that I find the Fedora 3.x codebase ill-equipped to handle are: i) scalability and ii) transactionality. Moreover, I find these two problems argue against reuse.</p>
 
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/20/reuse-or-rewrite/">Read on &rarr;</a>
-    </footer>
-  
+<!-- more -->
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/18/welcome-to-the-future/">Welcome to the Future of Fedora</a></h1>
-    
-    
-      <p class="meta">
-        
+<p>Fedora 3.x has repeatedly demonstrated its ability to manage millions of objects on commodity hardware, but its ability to scale to meet significant concurrent read and write requests is quite poor. Fedora 3.x is implemented as a single-node web application and consequently, cannot easily be scaled out or clustered.</p>
 
+<p>Fedora 3.x also does not support transactions in a robust fashion. Introducing a proper transaction architecture would also represent a fundamental sea-change to the codebase. Fedora 3.x supports a limited form of transactions within the scope of a single API call, but nothing like the transaction support modern applications offer.</p>
 
+<p>Removing Fedora&#8217;s single-node assumption to address scalability represents a fundamental change in the codebase. Introducing a modern transaction framework likely represents an equally significant labor. I believe that addressing either of these two problems would require a dedicated team months of labor to produce a passable solution. Moreover, we would have increased the net amount of code we are responsible for maintaining, and done little to ease or simplify the burden of developing new features.</p>
 
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-18T18:10:00+08:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Fedora has been an unqualified success in repository arena. More than twelve years since its inception, Fedora has seen three major releases, with hundreds of adopters worldwide and is stewarded by an independent, non-profit organization chartered in part to maintain its vitality.</p>
-
-<p>Its architecture has proven itself to be both flexible and extensible, and it&#8217;s an integral component in countless systems where durability is a key objective. An extensive network of committed institutions and individuals have invested in the project, and remain committed to its enduring success.</p>
-
-<p>But the downside of over a decade of production, battle-tested code is a large, aging codebase that is challenging for new developers to engage with which is at odds with the internal sustainability goal of a growing, active developer community.</p>
-
-<p><span class='pullquote-right' data-pullquote='New demands to support research data management, horizontal scalability and web-based architectures'>
-Despite the project&#8217;s demonstrated value and track record, numerous challenges lie ahead for the Fedora community. New demands to support research data management, horizontal scalability and web-based architectures are stretching the capacity of the current implementation. The recent, explosive growth of applications and frameworks built on Fedora, in the form of eSciDoc, Hydra and Islandora have brought both energy and adopters to the Fedora community, but each project was also wrestling with Fedora to keep pace with the rapid changes and demands of their respective user bases.
+<p><span class='pullquote-right' data-pullquote='a third option: reuse and rewrite'>
+A more nuanced version of the dilemma of reuse or rewrite introduces a third option: reuse and rewrite. Namely, build on top of another software stack. The right stack reduces the amount of code we are directly responsible for maintaining, increases the overall effective developer pool, and ultimately increases our ability to focus on the solving the problems and delivering features that bring real value to our community. Put another way, our decision should be the one that positions us best to fix the problems, not the code.
 </span></p>
 
+<p>And in fact, the strategy to reuse <em>and</em> rewrite is exactly what we have pursued for Fedora 4. I&#8217;ll delve into more detail in future posts, but here are some highlights:</p>
+
+<ol>
+<li>1 week to implement the minimum feature set to support running <a href="http://hydra.fcrepo.org/">Hydra</a> and <a href="http://islandora.fcrepo.org/">Islandora</a> on top of Fedora 4.</li>
+<li>Built-in support for <a href="https://docs.jboss.org/author/display/MODE/Clustering">clustering</a></li>
+<li>Build-in support for <a href="https://docs.jboss.org/author/display/MODE/Using+JTA+Transactions">transactions</a></li>
+<li>Fedora 3&#8217;s <a href="http://sonar.fcrepo.org/dashboard/index/463">128,359</a> vs. Fedora 4&#8217;s <a href="http://sonar.fcrepo.org/dashboard/index/1">5307</a> lines of code</li>
+</ol>
+
+
+<p>Coming up next: a look at some of the &#8220;lean&#8221; principles we&#8217;ve adopted to avoid the &#8220;build it and they will come&#8221; syndrome and how to participate and contribute to Fedora Futures.</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/18/welcome-to-the-future/">Read on &rarr;</a>
-    </footer>
+
+<span class="byline author vcard">Posted by <span class="fn">Edwin Shin</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2013-03-20T18:53:00+08:00" pubdate data-updated="true">Mar 20<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
   
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/18/welcome-to-the-future/" title="Previous Post: Welcome to the Future of Fedora">&laquo; Welcome to the Future of Fedora</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
-  <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/search?q=%23fcrepo"  data-widget-id="305521344764837889">Tweets about &#8220;#fcrepo&#8221;</a>
+  <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/search?q=%23fcrepo"  data-widget-id="305521344764837889">Tweets about "#fcrepo"</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </section>
 <section>
@@ -210,7 +217,7 @@ Despite the project&#8217;s demonstrated value and track record, numerous challe
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/futures">@futures</a> on GitHub
@@ -244,6 +251,7 @@ Despite the project&#8217;s demonstrated value and track record, numerous challe
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -258,7 +266,10 @@ Despite the project&#8217;s demonstrated value and track record, numerous challe
       var disqus_shortname = 'fcrepo';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://fcrepo.org/blog/2013/03/20/reuse-or-rewrite/';
+        var disqus_url = 'http://fcrepo.org/blog/2013/03/20/reuse-or-rewrite/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
