@@ -4,6 +4,7 @@ title: "Welcome to the Future of Fedora"
 date: 2013-03-18 18:10
 comments: true
 categories: 
+author: Edwin Shin, Tom Cramer
 ---
 
 Fedora has been an unqualified success in repository arena. More than twelve years since its inception, Fedora has seen three major releases, with hundreds of adopters worldwide and is stewarded by an independent, non-profit organization chartered in part to maintain its vitality.
