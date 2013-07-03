@@ -4,7 +4,7 @@
   <title><![CDATA[Fedora Futures]]></title>
   <link href="http://fcrepo.org/atom.xml" rel="self"/>
   <link href="http://fcrepo.org/"/>
-  <updated>2013-04-13T18:05:28+08:00</updated>
+  <updated>2013-07-03T13:15:53+08:00</updated>
   <id>http://fcrepo.org/</id>
   <author>
     <name><![CDATA[Edwin Shin]]></name>
@@ -20,10 +20,10 @@
     <id>http://fcrepo.org/blog/2013/03/20/reuse-or-rewrite</id>
     <content type="html"><![CDATA[<p>One of the first technical decisions we faced was whether to reuse or rewrite. Fedora represents over twelve years of development effort and there are some fairly <a href="http://www.joelonsoftware.com/articles/fog0000000069.html">well-known arguments</a> against undertaking a complete rewrite.</p>
 
-<p>However, the challenge of reusing the existing codebase is daunting, and not only for technical reasons. Fedora is not just an open-source project, but it is a community-sourced project. That is, a significant part of Fedora&#8217;s value proposition is the strength and expertise of its community. That community has driven and sustained Fedora over the years, but the <a href="http://martinfowler.com/bliki/TechnicalDebt.html">technical debt</a> of Fedora&#8217;s codebase has become a liability for engaging and growing our community of developers. A strong and engaged developer community is an essential part of a preservation repository&#8217;s success and sustainability, so our answer to the question of reuse or rewrite must support this goal.</p>
+<p>However, the challenge of reusing the existing codebase is daunting, and not only for technical reasons. Fedora is not just an open-source project, but it is a community-sourced project. That is, a significant part of Fedora&rsquo;s value proposition is the strength and expertise of its community. That community has driven and sustained Fedora over the years, but the <a href="http://martinfowler.com/bliki/TechnicalDebt.html">technical debt</a> of Fedora&rsquo;s codebase has become a liability for engaging and growing our community of developers. A strong and engaged developer community is an essential part of a preservation repository&rsquo;s success and sustainability, so our answer to the question of reuse or rewrite must support this goal.</p>
 
 <p><span class='pullquote-right' data-pullquote='We are past the era of relying on grant-funded teams of full-time, salaried developers'>
-At nine years, I am the longest-serving, active committer on the Fedora project and to this day I find many parts of the codebase difficult to approach, difficult to test, and therefore, difficult to change. We are past the era of relying on grant-funded teams of full-time, salaried developers working on Fedora. This doesn&#8217;t appear likely to change. As a repository service, Fedora&#8217;s relationship to end-users is indirect at best and consequently, the relationship between Fedora development and end-user value is not well understood or appreciated. Indeed, most of the energy in the Fedora ecosystem is now directed at higher-level frameworks (e.g. Hydra) and vertical products (e.g. Islandora), where the relationship between users and developers is more direct. A key part of Fedora&#8217;s future has to be a modular, extensible codebase that embraces and facilitates community contribution and collaboration in its many and varied forms.
+At nine years, I am the longest-serving, active committer on the Fedora project and to this day I find many parts of the codebase difficult to approach, difficult to test, and therefore, difficult to change. We are past the era of relying on grant-funded teams of full-time, salaried developers working on Fedora. This doesn&rsquo;t appear likely to change. As a repository service, Fedora&rsquo;s relationship to end-users is indirect at best and consequently, the relationship between Fedora development and end-user value is not well understood or appreciated. Indeed, most of the energy in the Fedora ecosystem is now directed at higher-level frameworks (e.g. Hydra) and vertical products (e.g. Islandora), where the relationship between users and developers is more direct. A key part of Fedora&rsquo;s future has to be a modular, extensible codebase that embraces and facilitates community contribution and collaboration in its many and varied forms.
 </span></p>
 
 <p>Two particular problems that I find the Fedora 3.x codebase ill-equipped to handle are: i) scalability and ii) transactionality. Moreover, I find these two problems argue against reuse.</p>
@@ -35,23 +35,23 @@ At nine years, I am the longest-serving, active committer on the Fedora project 
 
 <p>Fedora 3.x also does not support transactions in a robust fashion. Introducing a proper transaction architecture would also represent a fundamental sea-change to the codebase. Fedora 3.x supports a limited form of transactions within the scope of a single API call, but nothing like the transaction support modern applications offer.</p>
 
-<p>Removing Fedora&#8217;s single-node assumption to address scalability represents a fundamental change in the codebase. Introducing a modern transaction framework likely represents an equally significant labor. I believe that addressing either of these two problems would require a dedicated team months of labor to produce a passable solution. Moreover, we would have increased the net amount of code we are responsible for maintaining, and done little to ease or simplify the burden of developing new features.</p>
+<p>Removing Fedora&rsquo;s single-node assumption to address scalability represents a fundamental change in the codebase. Introducing a modern transaction framework likely represents an equally significant labor. I believe that addressing either of these two problems would require a dedicated team months of labor to produce a passable solution. Moreover, we would have increased the net amount of code we are responsible for maintaining, and done little to ease or simplify the burden of developing new features.</p>
 
 <p><span class='pullquote-right' data-pullquote='a third option: reuse and rewrite'>
 A more nuanced version of the dilemma of reuse or rewrite introduces a third option: reuse and rewrite. Namely, build on top of another software stack. The right stack reduces the amount of code we are directly responsible for maintaining, increases the overall effective developer pool, and ultimately increases our ability to focus on the solving the problems and delivering features that bring real value to our community. Put another way, our decision should be the one that positions us best to fix the problems, not the code.
 </span></p>
 
-<p>And in fact, the strategy to reuse <em>and</em> rewrite is exactly what we have pursued for Fedora 4. I&#8217;ll delve into more detail in future posts, but here are some highlights:</p>
+<p>And in fact, the strategy to reuse <em>and</em> rewrite is exactly what we have pursued for Fedora 4. I&rsquo;ll delve into more detail in future posts, but here are some highlights:</p>
 
 <ol>
-<li>1 week to implement the minimum feature set to support running <a href="http://hydra.fcrepo.org/">Hydra</a> and <a href="http://islandora.fcrepo.org/">Islandora</a> on top of Fedora 4.</li>
-<li>Built-in support for <a href="https://docs.jboss.org/author/display/MODE/Clustering">clustering</a></li>
-<li>Build-in support for <a href="https://docs.jboss.org/author/display/MODE/Using+JTA+Transactions">transactions</a></li>
-<li>Fedora 3&#8217;s <a href="http://sonar.fcrepo.org/dashboard/index/463">128,359</a> vs. Fedora 4&#8217;s <a href="http://sonar.fcrepo.org/dashboard/index/1">5307</a> lines of code</li>
+<li> 1 week to implement the minimum feature set to support running <a href="http://hydra.fcrepo.org/">Hydra</a> and <a href="http://islandora.fcrepo.org/">Islandora</a> on top of Fedora 4.</li>
+<li> Built-in support for <a href="https://docs.jboss.org/author/display/MODE/Clustering">clustering</a></li>
+<li> Build-in support for <a href="https://docs.jboss.org/author/display/MODE/Using+JTA+Transactions">transactions</a></li>
+<li> Fedora 3&rsquo;s <a href="http://sonar.fcrepo.org/dashboard/index/463">128,359</a> vs. Fedora 4&rsquo;s <a href="http://sonar.fcrepo.org/dashboard/index/1">5307</a> lines of code</li>
 </ol>
 
 
-<p>Coming up next: a look at some of the &#8220;lean&#8221; principles we&#8217;ve adopted to avoid the &#8220;build it and they will come&#8221; syndrome and how to participate and contribute to Fedora Futures.</p>
+<p>Coming up next: a look at some of the &ldquo;lean&rdquo; principles we&rsquo;ve adopted to avoid the &ldquo;build it and they will come&rdquo; syndrome and how to participate and contribute to Fedora Futures.</p>
 ]]></content>
   </entry>
   
@@ -62,29 +62,29 @@ A more nuanced version of the dilemma of reuse or rewrite introduces a third opt
     <id>http://fcrepo.org/blog/2013/03/18/welcome-to-the-future</id>
     <content type="html"><![CDATA[<p>Fedora has been an unqualified success in repository arena. More than twelve years since its inception, Fedora has seen three major releases, with hundreds of adopters worldwide and is stewarded by an independent, non-profit organization chartered in part to maintain its vitality.</p>
 
-<p>Its architecture has proven itself to be both flexible and extensible, and it&#8217;s an integral component in countless systems where durability is a key objective. An extensive network of committed institutions and individuals have invested in the project, and remain committed to its enduring success.</p>
+<p>Its architecture has proven itself to be both flexible and extensible, and it&rsquo;s an integral component in countless systems where durability is a key objective. An extensive network of committed institutions and individuals have invested in the project, and remain committed to its enduring success.</p>
 
 <p>But the downside of over a decade of production, battle-tested code is a large, aging codebase that is challenging for new developers to engage with which is at odds with the internal sustainability goal of a growing, active developer community.</p>
 
 <p><span class='pullquote-right' data-pullquote='New demands to support research data management, horizontal scalability and web-based architectures'>
-Despite the project&#8217;s demonstrated value and track record, numerous challenges lie ahead for the Fedora community. New demands to support research data management, horizontal scalability and web-based architectures are stretching the capacity of the current implementation. The recent, explosive growth of applications and frameworks built on Fedora, in the form of eSciDoc, Hydra and Islandora have brought both energy and adopters to the Fedora community, but each project was also wrestling with Fedora to keep pace with the rapid changes and demands of their respective user bases.
+Despite the project&rsquo;s demonstrated value and track record, numerous challenges lie ahead for the Fedora community. New demands to support research data management, horizontal scalability and web-based architectures are stretching the capacity of the current implementation. The recent, explosive growth of applications and frameworks built on Fedora, in the form of eSciDoc, Hydra and Islandora have brought both energy and adopters to the Fedora community, but each project was also wrestling with Fedora to keep pace with the rapid changes and demands of their respective user bases.
 </span></p>
 
 <!-- more -->
 
 
-<p>For all Fedora&#8217;s considerable strengths, it seemed that much of the project&#8217;s momentum and future value was at risk unless a new course of action was plotted.</p>
+<p>For all Fedora&rsquo;s considerable strengths, it seemed that much of the project&rsquo;s momentum and future value was at risk unless a new course of action was plotted.</p>
 
 <p><span class='pullquote-right' data-pullquote='It&#8217;s time for a serious re-investment in our core digital asset management and preservation services'>
-It&#8217;s time for a serious re-investment in our core digital asset management and preservation services. This was the call to arms from a group of self-organized, concerned stakeholders at at last year&#8217;s Open Repositories conference in Edinburgh. This group of a half-dozen Fedora institutions and DuraSpace committed to an in-depth comparison of their respective roadmaps for Fedora, and, given sufficient alignment, investment to kickstart a three-year effort to write the next chapter of the Fedora project.
+It&rsquo;s time for a serious re-investment in our core digital asset management and preservation services. This was the call to arms from a group of self-organized, concerned stakeholders at at last year&rsquo;s Open Repositories conference in Edinburgh. This group of a half-dozen Fedora institutions and DuraSpace committed to an in-depth comparison of their respective roadmaps for Fedora, and, given sufficient alignment, investment to kickstart a three-year effort to write the next chapter of the Fedora project.
 </span></p>
 
 <p>Through a series of in-person and virtual meetings in Fall 2012, we formulated a common vision for Fedora 4 that revolves around three principal objectives:</p>
 
 <ol>
-<li>to preserve the strengths of the current Fedora architecture and community</li>
-<li>to address the needs for robust and full-featured repository services (that are now mature and well-understood, compared to six or twelve years ago)</li>
-<li>to provide a successful platform for our common use for the next 5-10 years</li>
+<li> to preserve the strengths of the current Fedora architecture and community</li>
+<li> to address the needs for robust and full-featured repository services (that are now mature and well-understood, compared to six or twelve years ago)</li>
+<li> to provide a successful platform for our common use for the next 5-10 years</li>
 </ol>
 
 
