@@ -7,6 +7,8 @@ rvm:
 before_script:
   - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
   - rake setup_github_pages[$REPO_URL]
+   # To reset the 'url' to the custom domain in '_config.yml'
+  - git checkout -- _config.yml
 script: 
   - rake generate
 after_script:
