@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://fcrepo.org/sitemap.xml 
+Sitemap: http://futures.github.io/sitemap.xml 
