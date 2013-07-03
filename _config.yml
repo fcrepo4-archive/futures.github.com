@@ -107,9 +107,11 @@ facebook_like: false
 #        prose.io         #
 # ----------------------- #
 
-#prose.io settings 
+# prose.io settings
+# See: https://github.com/prose/prose/wiki/Configuration
 prose: 
-  rooturl: "source" 
+  rooturl: "source"
+  media: "source/images"
   metadata: 
     "source/_posts": | 
       layout: post 
