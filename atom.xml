@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Fedora Futures]]></title>
-  <link href="http://futures.github.io/atom.xml" rel="self"/>
-  <link href="http://futures.github.io/"/>
-  <updated>2013-07-03T16:10:47+00:00</updated>
-  <id>http://futures.github.io/</id>
+  <link href="http://fcrepo.org/atom.xml" rel="self"/>
+  <link href="http://fcrepo.org/"/>
+  <updated>2013-07-03T16:35:46+00:00</updated>
+  <id>http://fcrepo.org/</id>
   <author>
     <name><![CDATA[Edwin Shin]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Reuse or Rewrite?]]></title>
-    <link href="http://futures.github.io/blog/2013/03/20/reuse-or-rewrite/"/>
+    <link href="http://fcrepo.org/blog/2013/03/20/reuse-or-rewrite/"/>
     <updated>2013-03-20T18:53:00+00:00</updated>
-    <id>http://futures.github.io/blog/2013/03/20/reuse-or-rewrite</id>
+    <id>http://fcrepo.org/blog/2013/03/20/reuse-or-rewrite</id>
     <content type="html"><![CDATA[<p>One of the first technical decisions we faced was whether to reuse or rewrite. Fedora represents over twelve years of development effort and there are some fairly <a href="http://www.joelonsoftware.com/articles/fog0000000069.html">well-known arguments</a> against undertaking a complete rewrite.</p>
 
 <p>However, the challenge of reusing the existing codebase is daunting, and not only for technical reasons. Fedora is not just an open-source project, but it is a community-sourced project. That is, a significant part of Fedora&rsquo;s value proposition is the strength and expertise of its community. That community has driven and sustained Fedora over the years, but the <a href="http://martinfowler.com/bliki/TechnicalDebt.html">technical debt</a> of Fedora&rsquo;s codebase has become a liability for engaging and growing our community of developers. A strong and engaged developer community is an essential part of a preservation repository&rsquo;s success and sustainability, so our answer to the question of reuse or rewrite must support this goal.</p>
@@ -57,9 +57,9 @@ A more nuanced version of the dilemma of reuse or rewrite introduces a third opt
   
   <entry>
     <title type="html"><![CDATA[Welcome to the Future of Fedora]]></title>
-    <link href="http://futures.github.io/blog/2013/03/18/welcome-to-the-future/"/>
+    <link href="http://fcrepo.org/blog/2013/03/18/welcome-to-the-future/"/>
     <updated>2013-03-18T18:10:00+00:00</updated>
-    <id>http://futures.github.io/blog/2013/03/18/welcome-to-the-future</id>
+    <id>http://fcrepo.org/blog/2013/03/18/welcome-to-the-future</id>
     <content type="html"><![CDATA[<p>Fedora has been an unqualified success in repository arena. More than twelve years since its inception, Fedora has seen three major releases, with hundreds of adopters worldwide and is stewarded by an independent, non-profit organization chartered in part to maintain its vitality.</p>
 
 <p>Its architecture has proven itself to be both flexible and extensible, and it&rsquo;s an integral component in countless systems where durability is a key objective. An extensive network of committed institutions and individuals have invested in the project, and remain committed to its enduring success.</p>
