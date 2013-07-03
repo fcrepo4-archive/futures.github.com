@@ -249,13 +249,15 @@ multitask :push do
   puts "## Deploying branch to Github Pages "
   puts "## Pulling any updates from Github Pages "
   cd "#{deploy_dir}" do 
-    system "git pull"
+    system "git pull origin #{deploy_branch}"
   end
   (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
   Rake::Task[:copydot].invoke(public_dir, deploy_dir)
   puts "\n## Copying #{public_dir} to #{deploy_dir}"
   cp_r "#{public_dir}/.", deploy_dir
   cd "#{deploy_dir}" do
+    system "git config user.email `git log -1 --pretty=format:'%cE'`"
+    system "git config user.name `git log -1 --pretty=format:'%cN'`"
     system "git add -A"
     puts "\n## Commiting: Site updated at #{Time.now.utc}"
     message = "Site updated at #{Time.now.utc}\n\n[ci skip]"

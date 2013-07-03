@@ -8,9 +8,9 @@ before_script:
   - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
   - rake setup_github_pages[$REPO_URL]
 script: 
-  - bundle exec rake generate
+  - rake generate
 after_script:
-  - bundle exec rake deploy
+  - rake deploy
 env:
   global:
   - GH_REPO="futures/futures.github.com"
