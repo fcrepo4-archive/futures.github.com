@@ -1,5 +1,17 @@
+branches:
+  only:
+  - source
 language: ruby
 rvm:
   - 1.9.3
-  - 1.9.2
-script: bundle exec rake install; bundle exec rake generate
+before_script:
+  - export REPO_URL="https://$GH_TOKEN@github.com/$GH_REPO.git"
+  - rake setup_github_pages[$REPO_URL]
+script: 
+  - bundle exec rake generate
+after_script:
+  - bundle exec rake deploy
+env:
+  global:
+  - GH_REPO="futures/futures.github.com"
+  - secure: "m1/GVowyxkWyjzwWHtVI41PJMH3vY0hdtPN9PPae7tKB3HmAscFz3M6f/PRF\ntI80A+c4OBvT0Ky1eAvLfjrGrNa8KdCMWci3O5BKqJhSzdzbF5OO00LKg5Av\nMf0wsOZuZLcsAvDw4kn99i0y7TN7kr9knQ3EPkpQX8PFs9J46wY="
