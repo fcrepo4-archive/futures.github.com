@@ -17,3 +17,5 @@ env:
   global:
   - GH_REPO="futures/futures.github.com"
   - secure: "m1/GVowyxkWyjzwWHtVI41PJMH3vY0hdtPN9PPae7tKB3HmAscFz3M6f/PRF\ntI80A+c4OBvT0Ky1eAvLfjrGrNa8KdCMWci3O5BKqJhSzdzbF5OO00LKg5Av\nMf0wsOZuZLcsAvDw4kn99i0y7TN7kr9knQ3EPkpQX8PFs9J46wY="
+notifications:
+  email: false
