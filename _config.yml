@@ -111,11 +111,38 @@ facebook_like: false
 # See: https://github.com/prose/prose/wiki/Configuration
 prose: 
   rooturl: "source"
+  #siteurl: "http://fcrepo.org"
   media: "source/images"
   metadata: 
-    "source/_posts": | 
-      layout: post 
-      title: "Title" 
-      comments: true 
-      categories:  
-      published: true
+    "source/_posts":
+      - name: "title"
+        field:
+          label: "Title"
+          element: "text"
+          value: "default"
+      - name: "author"
+        field:
+          label: "Author"
+          element: "text"
+          value: "Edwin Shin"
+      - name: "published"
+        field:
+          label: "Published"
+          element: "checkbox"
+          value: "false"
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post"
+      - name: "categories"
+        field:
+          element: "select"
+          placeholder: "Select a category"
+          value:
+            - "build"
+            - "misc"
+      - name: "comments"
+        field:
+          element: "checkbox"
+          label: "Comments Enabled"
+          value: "true"
